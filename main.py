@@ -1,6 +1,6 @@
 import numpy as np
 
-np.set_printoptions(linewidth=100)
+np.set_printoptions(linewidth=10000)
 
 def read_file(filename):
     with open(filename, "rt", encoding="utf-8") as src:
@@ -13,10 +13,25 @@ def read_file(filename):
 def Gaus_Jordan(A, B):
     B1 = B.reshape(-1,1)
     C = np.hstack((A, B1))
-    for x in range(0, C.shape[0] - 1):
+    for i in range(0, C.shape[0]):
+        max_row_index = np.argmax(np.abs(C[:, i]))
+        if max_row_index != i:
+            C_ = C[i].copy()
+            C[i] = C[max_row_index].copy()
+            C[max_row_index] = C_.copy()
+    for x in range(0, C.shape[0]-1):
+    # x = 0
+        for y in range(0, C.shape[0]-1):
+            C[x + y] = C[x + y] / C[x + y, x]
+        for y in range(0, C.shape[0]-1):
+            C[x + y] = C[x + y] - C[x]
+        
+
+    print(C)
 
 
-A,B = read_file("equ1.txt")
+
+A,B = read_file("equ2.txt")
 
 Te = np.linalg.det(A)
 #print(Te)

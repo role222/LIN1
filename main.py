@@ -19,13 +19,17 @@ def Gaus_Jordan(A, B):
             C_ = C[i].copy()
             C[i] = C[max_row_index].copy()
             C[max_row_index] = C_.copy()
-    for x in range(0, C.shape[0]-1):
-    # x = 0
-        for y in range(0, C.shape[0]-1):
-            C[x + y] = C[x + y] / C[x + y, x]
-        for y in range(0, C.shape[0]-1):
-            C[x + y] = C[x + y] - C[x]
-        
+    for x in range(0, 3):
+    #x = 0
+        for y in range(x, C.shape[0]):
+            C[y] = C[y] / C[y, x]
+        print(C)
+        for y in range(x + 1, C.shape[0]):
+            for z in range(0, C.shape[1]):
+                C[z, y] = C[z, y] - C[z, x]
+                #print(y, z)
+        print(C)
+
 
     print(C)
 

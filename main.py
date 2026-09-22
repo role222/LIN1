@@ -24,11 +24,9 @@ def Gaus_Jordan(A, B):
         for y in range(x, C.shape[0]):
             C[y] = C[y] / C[y, x]
         print(C)
-        for y in range(x + 1, C.shape[0]):
+        for y in range(x+1, C.shape[0]):
             for z in range(0, C.shape[1]):
-                C[z, y] = C[z, y] - C[z, x]
-                #print(y, z)
-        print(C)
+                C[y, z] = C[y, z] - C[x, z]
 
 
     print(C)

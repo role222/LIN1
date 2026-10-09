@@ -1,3 +1,4 @@
 python/venv
 *.kate-swp
 __pycache__
+cpp/a.out

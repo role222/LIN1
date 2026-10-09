@@ -1,4 +1,5 @@
 import numpy as np
+from read import read_file
 
 def Cramer(A, B):
     Te = np.linalg.det(A)
@@ -12,3 +13,11 @@ def Cramer(A, B):
         Tx = np.linalg.det(C1)
         X[x] = Tx/Te
     return X.reshape(-1,1)
+
+def main():
+    A, B = read_file("../data_for_test/equ1.txt")
+    X = Cramer(A, B)
+    print(X)
+
+if __name__ == "__main__":
+    main()

@@ -1,4 +1,5 @@
 import numpy as np
+from read import read_file
 
 def Gaus_Jordan(A, B):
     B1 = B.reshape(-1,1)
@@ -22,3 +23,11 @@ def Gaus_Jordan(A, B):
             C[x, C.shape[1] - 1] = C[x, C.shape[1] - 1] - (X[y, 0] * C[x, y])
         X[x, 0] = C[x, C.shape[1] - 1]
     return X
+
+def main():
+    A, B = read_file("../data_for_test/equ2.txt")
+    X = Gaus_Jordan(A, B)
+    print(X)
+
+if __name__ == "__main__":
+    main()

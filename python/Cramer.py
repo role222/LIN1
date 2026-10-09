@@ -11,7 +11,8 @@ def Cramer(A, B):
         C1 = C.copy()
         C1[:, x] = B
         Tx = np.linalg.det(C1)
-        X[x] = Tx/Te
+        X[x] = Tx
+    X = X / Te
     return X
 
 def main():

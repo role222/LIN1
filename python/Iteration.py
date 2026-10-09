@@ -7,7 +7,7 @@ def Iteration(A, B, Eps = 1e-8):
     X1 = np.zeros(C.shape[0])
     X2 = np.zeros(C.shape[0])
     for i in range(0, C.shape[0]):
-        C[i] = C[i] / C[i, i]
+        C[i, :] = C[i, :] / C[i, i]
     while 1:
         for i in range(0, C.shape[0]):
             X1[i] = C[i, C.shape[0]]

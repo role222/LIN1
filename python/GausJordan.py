@@ -7,12 +7,12 @@ def Gaus_Jordan(A, B):
     for i in range(0, C.shape[0]):
         max_row_index = np.argmax(np.abs(C[:, i]))
         if max_row_index != i:
-            C_ = C[i].copy()
-            C[i] = C[max_row_index].copy()
-            C[max_row_index] = C_.copy()
+            C_ = C[i, :].copy()
+            C[i, :] = C[max_row_index, :].copy()
+            C[max_row_index, :] = C_.copy()
     for x in range(0, C.shape[0]):
         for y in range(x, C.shape[0]):
-            C[y] = C[y] / C[y, x]
+            C[y, :] = C[y, :] / C[y, x]
         for y in range(x+1, C.shape[0]):
             for z in range(0, C.shape[1]):
                 C[y, z] = C[y, z] - C[x, z]

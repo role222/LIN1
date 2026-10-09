@@ -22,7 +22,7 @@ def Gaus_Jordan(A, B):
         for y in range(x+1, C.shape[1]-1):
             C[x, C.shape[1] - 1] = C[x, C.shape[1] - 1] - (X[y, 0] * C[x, y])
         X[x, 0] = C[x, C.shape[1] - 1]
-    return X
+    return X.reshape(-1)
 
 def main():
     A, B = read_file("../data_for_test/equ2.txt")
@@ -30,4 +30,5 @@ def main():
     print(X)
 
 if __name__ == "__main__":
+    np.set_printoptions(linewidth=10000)
     main()

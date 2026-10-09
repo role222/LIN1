@@ -12,7 +12,7 @@ def Cramer(A, B):
         C1[:, x] = B
         Tx = np.linalg.det(C1)
         X[x] = Tx/Te
-    return X.reshape(-1,1)
+    return X
 
 def main():
     A, B = read_file("../data_for_test/equ1.txt")
@@ -20,4 +20,5 @@ def main():
     print(X)
 
 if __name__ == "__main__":
+    np.set_printoptions(linewidth=10000)
     main()

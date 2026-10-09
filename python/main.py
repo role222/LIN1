@@ -6,10 +6,10 @@ from Iteration import Iteration
 
 np.set_printoptions(linewidth=10000)
 
-A,B = read_file("../data_for_test/equ2.txt")
+A,B = read_file("../data_for_test/equ1.txt")
 C = Cramer(A, B)
-GJ = Gaus_Jordan(A, B)
-I = Iteration(A, B)
 print(C)
+GJ = Gaus_Jordan(A, B)
 print(GJ)
+I = Iteration(A, B)
 print(I)

@@ -2,3 +2,5 @@ python/venv
 *.kate-swp
 __pycache__
 cpp/a.out
+cpp/build
+*.o

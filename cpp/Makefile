@@ -2,21 +2,21 @@ BUILD_DIR := ./build
 SRC_DIR := ./src
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES := $(shell echo $(SRC_FILES) | sed "s|$(BUILD_DIR)/|$(SRC_DIR)/|g" | sed "s|\.cpp|.o|g")
+OBJ_FILES := $(shell echo $(SRC_FILES) | sed "s|$(SRC_DIR)/|$(BUILD_DIR)/|g" | sed "s|\.cpp|.o|g")
 PROGRAM_FILE = prog
 
 .PHONY: build clean test
 
 clean:
-	rm -r $(BUILD_DIR) 
-# build: main.o read.o
-# 	gcc main.o read.o -o prog -lstdc++
+	rm -rf $(BUILD_DIR) $(PROGRAM_FILE)
+build: $(OBJ_FILES)
+	mkdir -p $(BUILD_DIR)
+	gcc $(OBJ_FILES) -o $(PROGRAM_FILE) -lstdc++
 
-
-main.o: main.cpp
-	gcc -c main.cpp -o main.o
-read.o: read.cpp
-	gcc -c read.cpp -o read.o
+OBJ_FILES:
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(BUILD_DIR)
+	gcc -c $< -o $@
 
 test: $(OBJ_FILES)
 	@echo $(OBJ_FILES)

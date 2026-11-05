@@ -3,4 +3,5 @@ python/venv
 __pycache__
 cpp/a.out
 cpp/build
+cpp/prog
 *.o

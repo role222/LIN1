@@ -1,22 +1,28 @@
-BUILD_DIR := ./build
-SRC_DIR := ./src
+CXX      := g++
+CXXFLAGS := -Wall -Wextra -std=c++17 -O2
 
-SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES := $(shell echo $(SRC_FILES) | sed "s|$(SRC_DIR)/|$(BUILD_DIR)/|g" | sed "s|\.cpp|.o|g")
-PROGRAM_FILE = prog
+BUILD_DIR    := ./build
+SRC_DIR      := ./src
+PROGRAM_FILE := $(BUILD_DIR)/prog
 
-.PHONY: build clean test
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
+
+.PHONY: all clean test
+
+all: $(PROGRAM_FILE)
+
+$(PROGRAM_FILE): $(OBJ_FILES)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD_DIR) $(PROGRAM_FILE)
-build: $(OBJ_FILES)
-	mkdir -p $(BUILD_DIR)
-	gcc $(OBJ_FILES) -o $(PROGRAM_FILE) -lstdc++
+	rm -rf $(BUILD_DIR)
 
-OBJ_FILES:
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	mkdir -p $(BUILD_DIR)
-	gcc -c $< -o $@
-
-test: $(OBJ_FILES)
-	@echo $(OBJ_FILES)
+test:
+	@echo "Исходные файлы: $(SRC_FILES)"
+	@echo "Объектные файлы: $(OBJ_FILES)"

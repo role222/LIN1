@@ -4,4 +4,4 @@
 #include <valarray>
 std::valarray<double> Cramer(std::valarray<std::valarray<double>> &ms);
 
-#endif
+#endif //CRAMER_H

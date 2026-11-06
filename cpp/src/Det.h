@@ -4,4 +4,4 @@
 #include <valarray>
 double Det(std::valarray<std::valarray<double>> &ms);
 
-#endif
+#endif //DET_H

@@ -3,8 +3,7 @@
 #include <valarray>
 #include <string>
 
-#include "print_ms.h"
-#include "Det.h"
+#include "Cramer.h"
 #include "read.h"
 
 int main(int argc, char** argv){
@@ -18,7 +17,9 @@ int main(int argc, char** argv){
     }
     else {std::cerr << "For use basic path, you should write 'this_program -bp name.of.file/or/path'\nAborted.\n"; return 1;}
 
-    std::cout << Det(full_ms) << "\n";
+    std::valarray<double> X = Cramer(full_ms);
+    for(int i = 0; i < X.size(); i++) std::cout << X[i] << "  ";
+    std::cout << std::endl;
 
     return 0;
 }

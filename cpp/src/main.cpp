@@ -20,8 +20,6 @@ int main(int argc, char** argv){
         for(int i = 0; i < X_C.size(); i++) std::cout << X_C[i] << "  ";
         std::cout << std::endl << std::endl;
 
-        path = "../data_for_test/equ1.txt";
-        if(!file_read(path.c_str(), full_ms)) {std::cerr << "Smth went wrong with '" << path << "'\nAborted\n"; return 1;}
         std::cout << "GausJordan method result on '" << path << "'\n";
         std::valarray<std::valarray<double>> X_GJ = GausJordan(full_ms);
         for(int y = 0; y < X_GJ.size(); y++){
@@ -30,10 +28,23 @@ int main(int argc, char** argv){
         }
         std::cout << std::endl;
 
-        path = "../data_for_test/equ1.txt";
-        if(!file_read(path.c_str(), full_ms)) {std::cerr << "Smth went wrong with '" << path << "'\nAborted\n"; return 1;}
         std::cout << "Iteration method result on '" << path << "'\n";
         std::valarray<double> X_I = Iteration(full_ms);
+        for(int i = 0; i < X_I.size(); i++) std::cout << X_I[i] << "  ";
+        std::cout << std::endl << std::endl;
+
+        path = "../data_for_test/equ2.txt";
+        if(!file_read(path.c_str(), full_ms)) {std::cerr << "Smth went wrong with '" << path << "'\nAborted\n"; return 1;}
+        std::cout << "GausJordan method result on '" << path << "'\n";
+        X_GJ = GausJordan(full_ms);
+        for(int y = 0; y < X_GJ.size(); y++){
+            for(int x = 0; x < X_GJ[0].size(); x++) std::cout << X_GJ[y][x] << "  ";
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        std::cout << "Iteration method result on '" << path << "'\n";
+        X_I = Iteration(full_ms);
         for(int i = 0; i < X_I.size(); i++) std::cout << X_I[i] << "  ";
         std::cout << std::endl << std::endl;
 

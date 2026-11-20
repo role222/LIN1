@@ -7,11 +7,13 @@ PROGRAM_FILE = prog
 
 .PHONY: build clean test
 
-clean:
-	rm -rf $(BUILD_DIR) $(PROGRAM_FILE)
+rebuild: clean build
 build: $(OBJ_FILES)
 	mkdir -p $(BUILD_DIR)
 	gcc $(OBJ_FILES) -o $(PROGRAM_FILE) -lstdc++
+clean:
+	rm -rf $(BUILD_DIR) $(PROGRAM_FILE)
+
 
 OBJ_FILES:
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
